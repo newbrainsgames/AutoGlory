@@ -74,13 +74,13 @@
             // 
             // button2
             // 
-            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(87, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(78, 50);
             this.button2.TabIndex = 1;
-            this.button2.Text = "SOON";
+            this.button2.Text = "ALARME";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.alarme_Click);
             // 
             // button3
             // 

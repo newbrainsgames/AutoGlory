@@ -12,15 +12,17 @@ namespace AutoGlory
     {
         //Musica
         SoundPlayer sound = new SoundPlayer(Properties.Resources.MorningFlower);
-        //Instanciar atalhos
-        HotKey Start = new HotKey(AutoGlory.ModifierKeys.Control, AutoGlory.ModifierKeys.Alt, Keys.S);
-        HotKey Pause = new HotKey(AutoGlory.ModifierKeys.Control, AutoGlory.ModifierKeys.Alt, Keys.P);
+        //Criar atalho
+        HotKey Start;
+        HotKey Pause;
 
         //Início do programa
         public Form1()
         {
             InitializeComponent();
-            HotKey.form = this;
+            //Instanciar atalhos
+             Start = new HotKey(AutoGlory.ModifierKeys.Control, AutoGlory.ModifierKeys.Alt, Keys.S, "Start");
+             Pause = new HotKey(AutoGlory.ModifierKeys.Control, AutoGlory.ModifierKeys.Alt, Keys.P, "Pause");
         }
 
         public void KeyPressed()
@@ -44,6 +46,11 @@ namespace AutoGlory
         private void fightButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Abra o navegador em \"www.marketglory.com\"\nE clique Ctrl+Alt+S para iniciar.", "Aviso", MessageBoxButtons.OK);
+        }
+
+        private void alarme_Click(object sender, EventArgs e)
+        {
+            Alarme.Start();
         }
     }
 }
