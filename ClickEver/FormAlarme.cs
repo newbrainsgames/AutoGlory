@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Media;
 using System.Text;
 using System.Windows.Forms;
@@ -24,7 +25,8 @@ namespace AutoGlory
         int counter = 0;
 
         //Player da musica
-        public SoundPlayer songPlayer;
+        WMPLib.WindowsMediaPlayer songPlayer = new WMPLib.WindowsMediaPlayer();
+        string selectedMusic;
         bool estaTocando = false;
 
         //Tecla de atalho
@@ -35,6 +37,8 @@ namespace AutoGlory
 
         //Quantidade de vezes que o alarme vai repetir
         int vezes = 0;
+
+        public string RunningPath { get; private set; }
 
         /// <summary>
         /// FUNÇÕES
@@ -82,6 +86,7 @@ namespace AutoGlory
                 DialogResult result = MessageBox.Show("Tarefa concluída!\nDeseja fechar o alarme?", "Tarefa concluída!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if(result == DialogResult.Yes)
                 {
+                    vezes = 0;
                     this.Close();
                 }
             }
@@ -111,10 +116,10 @@ namespace AutoGlory
             //Função soneca que pausa musica por 3 minuto
             if (formA.estaTocando)
             {
-                formA.songPlayer.Stop();
+                formA.songPlayer.controls.stop();
             }
             System.Threading.Thread.Sleep(60000*3);
-            formA.songPlayer.PlayLooping();
+            formA.songPlayer.controls.play();
         }
 
         //Função que é chamada 20 vezes até dar o tempo escolhido pelo usuário
@@ -131,7 +136,8 @@ namespace AutoGlory
             {
                 //Interrompe o temporizador - Reproduz a musica - Ativa a boolean "estaTocando"
                 MyTimer.Stop();
-                songPlayer.Play();
+                songPlayer.URL = selectedMusic;
+                songPlayer.controls.play();
                 estaTocando = true;
             }
         }
@@ -142,13 +148,13 @@ namespace AutoGlory
             switch (songSelect.SelectedIndex)
             {
                 case 0:
-                    songPlayer = new SoundPlayer(Properties.Resources.MorningFlower);
+                    selectedMusic = Directory.GetCurrentDirectory() + "\\Resources\\MorningFlowerRemix.mp3";
                     break;
                 case 1:
-                    songPlayer = new SoundPlayer(Properties.Resources.DeathNoteOpening);
+                    selectedMusic = Directory.GetCurrentDirectory() + "\\Resources\\DeathNoteOpening.mp3";
                     break;
                 default:
-                    songPlayer = new SoundPlayer(Properties.Resources.MorningFlower);
+                    selectedMusic = Directory.GetCurrentDirectory() + "\\Resources\\MorningFlowerRemix.mp3";
                     break;
             }
         }
@@ -183,11 +189,23 @@ namespace AutoGlory
         //Reinicia o temporizador
         private void Reiniciar_Click(object sender, EventArgs e)
         {
-            songPlayer.Stop();
+            songPlayer.controls.stop();
             estaTocando = false;
             counter = 0;
             progressBar.Value = 0;
             Start();
+        }
+
+        private void Zerar_Click(object sender, EventArgs e)
+        {
+            songPlayer.controls.stop();
+            estaTocando = false;
+            counter = 0;
+            vezes = 0;
+            progressBar.Value = 0;
+            maskedTextBox1.Text = "10:00";
+            numericUpDown1.Value = 10;
+            songSelect.SelectedIndex = 0;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace AutoGlory
     public partial class FormMenu : Form
     {
         //Musica
-        SoundPlayer sound = new SoundPlayer(Properties.Resources.MorningFlower);
+        //SoundPlayer sound = new SoundPlayer(Properties.Resources.MorningFlower);
         //Criar atalho
         HotKey Start;
         HotKey Pause;

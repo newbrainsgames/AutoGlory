@@ -61,20 +61,22 @@ namespace AutoGlory.Properties {
         }
         
         /// <summary>
-        ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
+        ///   Consulta um recurso localizado do tipo System.Byte[].
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream DeathNoteOpening {
+        internal static byte[] DeathNoteOpening {
             get {
-                return ResourceManager.GetStream("DeathNoteOpening", resourceCulture);
+                object obj = ResourceManager.GetObject("DeathNoteOpening", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
+        ///   Consulta um recurso localizado do tipo System.Byte[].
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream MorningFlower {
+        internal static byte[] MorningFlowerRemix {
             get {
-                return ResourceManager.GetStream("MorningFlower", resourceCulture);
+                object obj = ResourceManager.GetObject("MorningFlowerRemix", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
