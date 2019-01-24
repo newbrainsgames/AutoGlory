@@ -63,6 +63,15 @@ namespace AutoGlory.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream DeathNoteOpening {
+            get {
+                return ResourceManager.GetStream("DeathNoteOpening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream MorningFlower {
             get {
                 return ResourceManager.GetStream("MorningFlower", resourceCulture);

@@ -10,43 +10,29 @@ namespace AutoGlory
 {
     public class HotKey
     {
-        string sender;
-        public HotKey(ModifierKeys one, ModifierKeys two, Keys key, string sender)
+        string nome;
+        public HotKey(ModifierKeys one, ModifierKeys two, Keys key, string nome)
         {
-            this.sender = sender;
+            this.nome = nome;
             KeyboardHook Atalho = new KeyboardHook();
             Atalho.KeyPressed += new EventHandler<KeyPressedEventArgs>(KeyPressed);
             Atalho.RegisterHotKey(one | two, key);
         }
 
-        public HotKey(ModifierKeys one, ModifierKeys two, Keys key, bool music)
-        {
-            KeyboardHook AtalhoM = new KeyboardHook();
-            AtalhoM.KeyPressed += new EventHandler<KeyPressedEventArgs>(Alarme.KeyPressed);
-            AtalhoM.RegisterHotKey(one | two, key);
-        }
-
         private void KeyPressed(object sender, KeyPressedEventArgs e)
         {
-            switch (sender)
+            switch (nome)
             {
                 case "Start":
-                    Start();
+                    FormMenu.S_Pressed();
                     break;
                 case "Pause":
-                    Pause();
+                    FormMenu.P_Pressed();
+                    break;
+                case "Alarme":
+                    FormAlarme.Alarme_Pressed();
                     break;
             }
-        }
-
-        private void Start()
-        {
-
-        }
-
-        private void Pause()
-        {
-
         }
 
         //Mouse Dll
